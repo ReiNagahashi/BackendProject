@@ -1,4 +1,5 @@
 import sys
+import validator
 
 def reverse(inputPath, outputPath):
     with open(inputPath) as f:
@@ -26,11 +27,22 @@ def replaceString(inputPath, originString, newString):
 
 
 if __name__ == "__main__":
-    # if not validator():
-    # reverse(sys.argv[2], sys.argv[3])
-    # copy(sys.argv[2], sys.argv[3])
-    # dupulicateContents(sys.argv[2], 5)
-    replaceString(sys.argv[2], "ll", "kk")
+    # 🚨argvには最初のpython3というコマンドは含まれていない
+    if not validator.validator(sys.argv[1], len(sys.argv[1:])):
+        print("Validation error: type correctly.")
+        sys.exit(1)
+
+    # reverseの実行
+    reverse(sys.argv[2], sys.argv[3])
+
+    # copyの実行
+    copy(sys.argv[2], sys.argv[3])
+
+    # dupulicate-contentsの実行
+    dupulicateContents(sys.argv[2], sys.argv[3])
+
+    # replace-stringの実行
+    replaceString(sys.argv[2], sys.argv[3], sys.argv[4])
 
 
 
